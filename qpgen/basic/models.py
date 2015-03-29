@@ -9,7 +9,6 @@ class SubQuestion(models.Model):
 	section 	= models.CharField(max_length=5)
 
 	def __str__(self):
-		
 		return self.subject.name
 
 class Subject(models.Model):
