@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+		{% block extrahead %}
+
+		<title>Login - TEDxPESITBSC</title>
+
+        <style type="text/css">
+        
+
+        .header h1 {
+        	text-align: center;
+        	font-size: 30px;
+        	padding-bottom: 15px;
+        	border-bottom: 1px solid rgba(0,0,0,0.1);
+        	margin-bottom: 10px;
+        }
+        h3 {
+        	text-align: center;
+        }
+        hr {
+        	margin-top: 0;
+        }
+        a {
+        	text-decoration: none;
+        }
+        .navigation-list {
+        	list-style-type: none;
+        	float: right;
+        }
+        .navigation-list li {
+        	margin-left: 5px;
+        	float: left;
+        }
+        .navigation-list a {
+        	display: block;
+        }
+        #main {
+        	padding: 2em 0;
+        }
+        </style>
+
+        {% endblock %}
+        
+
+        {% block content %}
+
+		<div class="12u navigation pull-right">
+			<ul class="navigation-list">
+				<li><a href="/contact">Contact us</a></li>
+                <li>|</li>
+                <li><a href="/about">About</a></li>
+			</ul>
+		</div>
+
+    	<div class="header">
+		    <h1><a href="{% url 'qpdetail' %}"><img src="{% static 'images/logo_small.JPG' %}" alt="TEDxPESITBSC" /></a></h1>
+		    <h3 class="sub-title">LOGIN</h3>
+	    </h2>
+
+	    {% if message %}
+	    <div class="12u {{ messageclass }}">
+	    	{{ message }}
+	    </div>
+	    {% endif %}
+
+	    <div class="row">
+	    <div class="4u$ -4u">
+	        <form action="" method="POST">
+	            {% csrf_token %}
+	            {{form.as_p}}
+	            <input type="submit" value="Login" />
+	        </form>
+	    </div>
+	    </div>
+
+	    {% endblock %}
