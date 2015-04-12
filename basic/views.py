@@ -1,9 +1,10 @@
 from django.shortcuts import render,HttpResponse,redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import MainForm,LoginForm
-from .models import SubQuestion,Subject,QuestionPaper,MainQuestion
-# Create your views here.
+
+from .forms import MainForm, LoginForm
+from .models import SubQuestion, Subject, QuestionPaper, MainQuestion
+
 def login_user(request):
 	context = {}
 	if request.method == 'GET':
@@ -53,7 +54,6 @@ def qpdetail(request):
 
 		form = MainForm()
 		context['form']			= form
-		context['form_type']	= 1
 
 		return render(request,'qpdetail.html',context)
 
@@ -64,9 +64,9 @@ def qpdetail(request):
 		if form.is_valid():
 			data = form.cleaned_data
 
-			university      = str(data['university'])
+			university      = data['university']
 			semester	    = data['semester']
-			subject	        = str(data['subject'])
+			subject	        = data['subject']
 			max_marks	    = data['max_marks']
 			no_of_questions	= data['no_of_questions']
 			sub_questions	= data['sub_questions']
