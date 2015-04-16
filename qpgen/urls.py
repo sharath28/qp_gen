@@ -2,15 +2,19 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'qpgen.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-    url(r'^$','basic.views.login_user',name='login'),
+
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^qpdetail/?','basic.views.qpdetail',name='qpdetail'),
+
+    #Login and logout
+    url(r'^$','basic.views.login_user',name='login'),
     url(r'^logout/?','basic.views.logout_user',name='logout'),
-    url(r'^contact/?','basic.views.contact',name='contact'),
+
+    #Create and view question paper
+    url(r'^create/?','basic.views.create_qp',name='create_qp'),
+    url(r'^view/(?P<qp_id>\d+)/?','basic.views.view_qp',name='view_qp'),
+
+    #Other pages
     url(r'^about/?','basic.views.about',name='about'),
-   # url(r'^subject_jsons/',,)
+    url(r'^contact/?','basic.views.contact',name='contact'),
 
 )
