@@ -19,6 +19,7 @@ class Subject(models.Model):
 
 
 class Question(models.Model):
+
 	DIFFICULTY_TYPES = [ (int(enum_choice), enum_choice.name) for enum_choice in DifficultyTypeEnum ]
 
 	text		  = models.CharField(max_length=500)
@@ -26,6 +27,8 @@ class Question(models.Model):
 	subject 	  = models.ForeignKey('Subject')
 	difficulty	  = models.IntegerField(default=int(DifficultyTypeEnum.unknown), choices=DIFFICULTY_TYPES)
 	unit		  = models.IntegerField()
+	created_at	  = models.DateTimeField(auto_now_add=True, null=False, editable=False)
+	updated_at	  = models.DateTimeField(auto_now=True, null=False, editable=False)
 
 	def __str__(self):
 		return self.subject.name
@@ -38,6 +41,7 @@ class QuestionImage(models.Model):
 
 
 class MainQuestion(models.Model):
+	question_no	  = models.PositiveIntegerField()
 	sub_questions = models.ManyToManyField('Question')
 
 
@@ -48,8 +52,8 @@ class QuestionPaper(models.Model):
 	max_marks		= models.IntegerField(default=0)
 	date_of_exam	= models.DateField()
 	teacher_name	= models.CharField(max_length=30)
-	created_at			= models.DateTimeField(auto_now_add=True, null=False, editable=False)
-	updated_at			= models.DateTimeField(auto_now=True, null=False, editable=False)
+	created_at		= models.DateTimeField(auto_now_add=True, null=False, editable=False)
+	updated_at		= models.DateTimeField(auto_now=True, null=False, editable=False)
 
 	def __str__(self):
 		semester = self.subject.semester
